@@ -3,7 +3,7 @@ class Trainer < ActiveRecord::Base
   has_many :pokemons, through: :trainer_pokemons
 
   def pick_pokemon
-    puts Pokemon.all
+    puts Pokemon.list_all
     puts "Pick your first pokemon from the list above!!"
     name = gets.chomp
     if pokemon = Pokemon.find_by(name: name) 
@@ -12,5 +12,6 @@ class Trainer < ActiveRecord::Base
       puts Game.help
     else
       puts "That is not one of the options"
+    end
   end
 end
