@@ -7,4 +7,5 @@ class Move < ActiveRecord::Base
     self.all.map do |moves|
       moves.name
     end
+  end
 end

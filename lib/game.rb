@@ -1,4 +1,4 @@
-require_all '../lib'
+#require_all '../lib'
 class Game
 
   attr_accessor :state

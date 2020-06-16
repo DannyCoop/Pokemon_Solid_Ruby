@@ -23,9 +23,15 @@ def welcome
   end
 end
 
-
+cli = Cli.new()
 
 trainer = welcome()
 trainer.pick_pokemon
+tp = TrainerPokemon.all.last
+pm = PokemonMove.all.last
+tp.pick_moves
+
+
+
 
 

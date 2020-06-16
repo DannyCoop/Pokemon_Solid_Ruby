@@ -3,23 +3,26 @@ class PokemonMove < ActiveRecord::Base
   belongs_to :move
   belongs_to :trainer_pokemon
 
-  def pick_moves
-    puts Move.list_all
-    puts "Pick one of your move. (4) left"
-    move1 = gets.chomp
-    puts "Pick moves (3) left"
-    move2 = gets.chomp
-    puts "Pick moves (2) left"
-    move3 = gets.chomp
-    puts "Pick moves (1) left"
-    move4 = gets.chomp
-    
-  end
+ # def pick_moves
+ #   @moves = []
+ #   puts Move.list_all
+ #   until @moves.length == 4
+ #     puts "Pick a move. (#{4 - @moves.length}) picks left"
+ #     move = gets.chomp
+ #     if check_input(Move.list_all, move)
+ #       @moves << move
+ #     else
+ #       puts "Please try again"
+ #     end
+ #   end
+ # end
 
-  def check_input(valid_list, input)
-    if !valid_list.include?(input)
-      puts "That is not one of the options"
-    end
-  end
+ # def check_input(valid_list, input)
+ #   if !valid_list.include?(input)
+ #     puts "That is not one of the options"
+ #   else
+ #     true
+ #   end
+ # end
 
 end
