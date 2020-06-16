@@ -23,13 +23,4 @@ class TrainerPokemon < ActiveRecord::Base
       PokemonMove.create(trainer_pokemon: self, move: move)
     end
   end
-
-   def check_input(valid_list, input)
-    if !valid_list.include?(input)
-      puts "That is not one of the options"
-    else
-      true
-    end
-  end
-
 end
