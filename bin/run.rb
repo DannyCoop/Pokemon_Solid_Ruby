@@ -28,3 +28,4 @@ end
 trainer = welcome()
 trainer.pick_pokemon
 
+
