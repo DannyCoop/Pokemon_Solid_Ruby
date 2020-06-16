@@ -9,7 +9,10 @@ class Trainer < ActiveRecord::Base
     if pokemon = Pokemon.find_by(name: name) 
       TrainerPokemon.new(self.trainer_id, pokemon.pokemon_id)
     elsif name = "help"
-      puts Game.help
+      # puts Game.help
+      puts "help commands will go here"
+    elsif name = "relist"
+      puts Pokemon.all
     else
       puts "That is not one of the options"
   end
