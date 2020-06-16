@@ -4,7 +4,7 @@ class Pokemon < ActiveRecord::Base
 
   def self.list_all
     self.all.each do |pokemon|
-      pokemon.name
+      puts pokemon.name
     end
   end
 
