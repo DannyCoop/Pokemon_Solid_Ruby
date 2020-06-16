@@ -43,4 +43,10 @@ class Trainer < ActiveRecord::Base
     end
     nil
   end
+
+  def self.list_all
+    self.all.map do |trainer|
+      trainer.name
+    end
+  end
 end
