@@ -8,4 +8,6 @@ class Move < ActiveRecord::Base
       moves.name
     end
   end
+
+
 end
