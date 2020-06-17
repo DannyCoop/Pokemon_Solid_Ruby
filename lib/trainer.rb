@@ -33,8 +33,14 @@ class Trainer < ActiveRecord::Base
 
   def pick_pokemon(list_of_names)
     name = get_valid_input(list_of_names)
-    pokemon = Pokemon.find_by(name: name) 
+    pokemon = Pokemon.find_by(name: name)  
     picked_mon = TrainerPokemon.create(trainer_id: self.id, pokemon_id: pokemon.id, nickname: pokemon.name, hp: pokemon.base_hp)
+    puts "Would you like to give your pokemon a nickname? y/n"
+    yn = get_valid_input(['y','n'])
+    if yn == 'y'
+      nickname = gets.chomp
+      picked_mon.nickname = nickname
+    end
     picked_mon.pick_moves
     picked_mon
     # Maybe ???? self.show_pokemon
@@ -61,6 +67,12 @@ class Trainer < ActiveRecord::Base
       tp.nickname
     end
   end
+
+  def show_my_pokemon_nicknames
+    list_my_pokemon_nicknames.each do |name|
+      puts name
+    end
+  end 
 
   def show_opponents_with_pokemon
     opponents = list_opponents
