@@ -5,13 +5,13 @@ class Cli
   def start
     welcome
     set_trainer
-    @trainer.list_pokemon
+    @trainer.list_my_pokemon
     
-    choose_opponent
+    battle_prep
   end
 
-  def choose_opponent
-    @trainer.list_opponents
+  def battle_prep
+    @trainer.pick_from_roster
   end
 
   def battle

@@ -8,35 +8,40 @@ class Trainer < ActiveRecord::Base
   end
 
   def pick_from_roster
-    puts "pick a pokemon roster or enter 'choose new pokemon'"
+    puts "pick a pokemon from your roster or enter 'choose new pokemon'"
+    # binding.pry
     show_pokemon_with_moves
-    input = get_valid_input(list_pokemon.push("choose new pokemon"))
+    input = get_valid_input(list_my_pokemon.push("choose new pokemon"))
     if input == "choose new pokemon"
       list_pokemon
       pick_pokemon(Pokemon.list_all)
     else
-      puts list_of_my_pokemon
-      pick_pokemon(list_of_my_pokemon)
+      puts input
+      # binding.pry
+      return TrainerPokemon.find_by(trainer_id: self.id, nickname: input)
     end
   end
 
   def pick_first_pokemon
     puts "Pick your first pokemon from the list above!!"
     list_pokemon
-    pick_pokemon(Pokemonn.list_all)
+    pick_pokemon(Pokemon.list_all)
+    # picked_mon = pick_pokemon(Pokemon.list_all)
+    # picked_mon.pick_moves
   end
 
   def pick_pokemon(list_of_names)
     name = get_valid_input(list_of_names)
     pokemon = Pokemon.find_by(name: name) 
-    TrainerPokemon.create(trainer_id: self.id, pokemon_id: pokemon.id)
+    TrainerPokemon.create(trainer_id: self.id, pokemon_id: pokemon.id, nickname: pokemon.name)
     # Maybe ???? self.show_pokemon
   end
 
   def show_pokemon_with_moves
     tp_list = TrainerPokemon.where(trainer: self)
+    # binding.pry 
     tp_list.each do |tp|
-      puts tp.pokemon.name
+      puts tp.nickname
       tp.moves.each do |move|
         puts "  " + move.name
       end
@@ -44,10 +49,10 @@ class Trainer < ActiveRecord::Base
     nil
   end
 
-  def list_of_my_pokemon
+  def list_my_pokemon
     tp_list = TrainerPokemon.where(trainer: self)
     tp_list.map do |tp|
-      tp.pokemon.name
+      tp.nickname
     end
   end
 
@@ -70,7 +75,7 @@ class Trainer < ActiveRecord::Base
 
   def get_valid_input(valid_list)
     loop do 
-    input = $stdin.gets.chomp.downcase
+    input = $stdin.gets.chomp
     # binding.pr!!y
       if valid_list.include?(input)
         return input
