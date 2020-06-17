@@ -26,11 +26,6 @@ class Cli
       second.calculate_health(move)
       move2 = second.pick_random_move
       first.calculate_health(move2)
-       
-      #trainer: choose move (displays player's options, takes chosen option, return damage)
-      #calculate health: takes damage returned from trainer: and applies to counterpart
-      #opponent: ^^same as above^^
-      #
     end
   end
 
