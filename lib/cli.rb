@@ -6,7 +6,7 @@ class Cli
     welcome
     set_trainer
     @trainer.list_pokemon
-    @trainer.pick_pokemon
+    
     choose_opponent
   end
 
@@ -50,6 +50,7 @@ class Cli
       puts "Please enter a name for your trainer"
       name = $stdin.gets.chomp
       @trainer = Trainer.create(name: name)
+      @trainer.pick_first_pokemon
   end
 
   def get_valid_input(valid_list)

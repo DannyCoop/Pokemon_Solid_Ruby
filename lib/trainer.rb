@@ -7,16 +7,33 @@ class Trainer < ActiveRecord::Base
     puts Pokemon.list_all
   end
 
-  def pick_pokemon
+  def pick_from_roster
+    puts "pick a pokemon roster or enter 'choose new pokemon'"
+    show_pokemon_with_moves
+    input = get_valid_input(list_pokemon.push("choose new pokemon"))
+    if input == "choose new pokemon"
+      list_pokemon
+      pick_pokemon(Pokemon.list_all)
+    else
+      puts list_of_my_pokemon
+      pick_pokemon(list_of_my_pokemon)
+    end
+  end
+
+  def pick_first_pokemon
     puts "Pick your first pokemon from the list above!!"
-    name = get_valid_input(Pokemon.list_all)
+    list_pokemon
+    pick_pokemon(Pokemonn.list_all)
+  end
+
+  def pick_pokemon(list_of_names)
+    name = get_valid_input(list_of_names)
     pokemon = Pokemon.find_by(name: name) 
     TrainerPokemon.create(trainer_id: self.id, pokemon_id: pokemon.id)
     # Maybe ???? self.show_pokemon
   end
 
-  def show_pokemon
-    puts "Pick a pokemon from your roaster or 'choose new pokemon'"
+  def show_pokemon_with_moves
     tp_list = TrainerPokemon.where(trainer: self)
     tp_list.each do |tp|
       puts tp.pokemon.name
@@ -25,6 +42,13 @@ class Trainer < ActiveRecord::Base
       end
     end
     nil
+  end
+
+  def list_of_my_pokemon
+    tp_list = TrainerPokemon.where(trainer: self)
+    tp_list.map do |tp|
+      tp.pokemon.name
+    end
   end
 
   def list_opponents
@@ -46,7 +70,7 @@ class Trainer < ActiveRecord::Base
 
   def get_valid_input(valid_list)
     loop do 
-    input = $stdin.gets.chomp
+    input = $stdin.gets.chomp.downcase
     # binding.pr!!y
       if valid_list.include?(input)
         return input
