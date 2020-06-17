@@ -1,21 +1,23 @@
 class Cli
 
-  attr_accessor :trainer
+  attr_accessor :trainer, :poke, :opponent, :opponent_poke
   
   def start
     welcome
     set_trainer
-    @trainer.list_my_pokemon
-    
     battle_prep
   end
 
   def battle_prep
-    @trainer.pick_from_roster
+    @poke = @trainer.pick_from_roster
+    @trainer.list_opponents
+    @opponent = @trainer.pick_opponent
+    @opponent_poke = @opponent.pick_random_pokemon
+    puts "Your opponent is #{@opponent.name}!. #{@opponent.name} sent out #{@opponent_poke.nickname}!"
   end
 
   def battle
-
+    
   end
 
   def post_battle

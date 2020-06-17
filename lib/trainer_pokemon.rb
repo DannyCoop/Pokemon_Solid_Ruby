@@ -1,5 +1,5 @@
 class TrainerPokemon < ActiveRecord::Base
-  
+
   belongs_to :pokemon
   belongs_to :trainer
   has_many :pokemon_moves
@@ -10,12 +10,8 @@ class TrainerPokemon < ActiveRecord::Base
     puts Move.list_all
     until moves.length == 4
       puts "Pick a move. (#{4 - moves.length}) picks left"
-      move = gets.chomp
-      if check_input(Move.list_all, move)
-        moves << move
-      else
-        puts "Please try again"
-      end
+      move = get_valid_input(Move.list_all)
+      moves << move
     end
 
     moves.each do |string|
@@ -23,4 +19,17 @@ class TrainerPokemon < ActiveRecord::Base
       PokemonMove.create(trainer_pokemon: self, move: move)
     end
   end
+
+  def get_valid_input(valid_list)
+    loop do 
+      input = $stdin.gets.chomp
+      # binding.pr!!y
+      if valid_list.include?(input)
+        return input
+      else
+        puts "That is not one of the options"
+      end
+    end
+  end
+
 end
