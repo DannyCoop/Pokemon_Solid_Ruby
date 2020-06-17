@@ -1,17 +1,17 @@
 class Cli
 
-  @trainer = nil
+  attr_accessor :trainer
   
   def start
-    
-  end
-
-  def make_new_trainer
-
+    welcome
+    set_trainer
+    @trainer.list_pokemon
+    @trainer.pick_pokemon
+    choose_opponent
   end
 
   def choose_opponent
-
+    @trainer.list_opponents
   end
 
   def battle
@@ -25,6 +25,14 @@ class Cli
   def welcome
     puts "Welcome to Pokemon Battle Simulator. Please enter your name"
   end
+  
+  def set_trainer
+    if returning_player
+      get_save_file
+    else
+      make_new_file
+    end
+  end
 
   def returning_player
     list = ["y", "n"]
@@ -32,23 +40,15 @@ class Cli
     return get_valid_input(list) == "y"
   end
 
-  def set_trainer
-    if returning_player
-      get_save_file
-    else
-      make_new_trainer
-    end
-
-  end
-
   def get_save_file
       puts "Please enter your trainer name"
-      @trainer = get_valid_input(Trainer.list_all)
+      trainer = get_valid_input(Trainer.list_all)
+      @trainer = Trainer.find_by(name: trainer)
   end 
 
   def make_new_file
       puts "Please enter a name for your trainer"
-      name = gets.chomp
+      name = $stdin.gets.chomp
       @trainer = Trainer.create(name: name)
   end
 
