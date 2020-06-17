@@ -34,8 +34,9 @@ class Trainer < ActiveRecord::Base
   def pick_pokemon(list_of_names)
     name = get_valid_input(list_of_names)
     pokemon = Pokemon.find_by(name: name) 
-    picked_mon = TrainerPokemon.create(trainer_id: self.id, pokemon_id: pokemon.id, nickname: pokemon.name)
+    picked_mon = TrainerPokemon.create(trainer_id: self.id, pokemon_id: pokemon.id, nickname: pokemon.name, hp: pokemon.base_hp)
     picked_mon.pick_moves
+    picked_mon
     # Maybe ???? self.show_pokemon
   end
 

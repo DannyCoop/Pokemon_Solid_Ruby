@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 6) do
+ActiveRecord::Schema.define(version: 7) do
 
   create_table "moves", force: :cascade do |t|
     t.string "name"
@@ -24,13 +24,14 @@ ActiveRecord::Schema.define(version: 6) do
 
   create_table "pokemons", force: :cascade do |t|
     t.string "name"
-    t.integer "hp"
+    t.integer "base_hp"
   end
 
   create_table "trainer_pokemons", force: :cascade do |t|
     t.integer "trainer_id"
     t.integer "pokemon_id"
     t.string "nickname"
+    t.integer "hp"
   end
 
   create_table "trainers", force: :cascade do |t|

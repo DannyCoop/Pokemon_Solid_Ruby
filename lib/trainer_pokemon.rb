@@ -32,4 +32,29 @@ class TrainerPokemon < ActiveRecord::Base
     end
   end
 
+  def list_pokemon_moves
+    self.moves.map do |move|
+      move.name
+    end
+  end
+
+  def pick_move
+    puts list_pokemon_moves
+    puts "Choose a move from the list"
+    move = get_valid_input(list_pokemon_moves)
+    puts "#{self.nickname} used #{move}!"
+    Move.find_by(name: move)
+  end
+
+  def pick_random_move
+    move = list_pokemon_moves.sample
+    puts "#{self.nickname} used #{move}!"
+    Move.find_by(name: move)
+  end
+
+  def calculate_health(move)
+    damage = move.damage
+    self.hp -= damage
+    puts "#{self.nickname} took #{damage} points of damage. Now at #{hp < 0 ? 0 : hp} hp."
+  end
 end

@@ -1,11 +1,12 @@
 class Cli
 
   attr_accessor :trainer, :poke, :opponent, :opponent_poke
-  
+
   def start
     welcome
     set_trainer
     battle_prep
+    battle
   end
 
   def battle_prep
@@ -17,7 +18,24 @@ class Cli
   end
 
   def battle
-    
+    order = turn_order
+    first, second = order[0], order[1]
+    while (@poke.hp > 0 && @opponent_poke.hp > 0)
+      puts "#{@poke.nickname} currently has #{@poke.hp} hp.\n\n#{@opponent_poke.nickname} currently has #{@opponent_poke.hp} hp."
+      move = first.pick_move
+      second.calculate_health(move)
+      move2 = second.pick_random_move
+      first.calculate_health(move2)
+       
+      #trainer: choose move (displays player's options, takes chosen option, return damage)
+      #calculate health: takes damage returned from trainer: and applies to counterpart
+      #opponent: ^^same as above^^
+      #
+    end
+  end
+
+  def turn_order
+    [@poke, @opponent_poke].shuffle
   end
 
   def post_battle
@@ -27,7 +45,7 @@ class Cli
   def welcome
     puts "Welcome to Pokemon Battle Simulator. Please enter your name"
   end
-  
+
   def set_trainer
     if returning_player
       get_save_file
@@ -43,21 +61,21 @@ class Cli
   end
 
   def get_save_file
-      puts "Please enter your trainer name"
-      trainer = get_valid_input(Trainer.list_all)
-      @trainer = Trainer.find_by(name: trainer)
+    puts "Please enter your trainer name"
+    trainer = get_valid_input(Trainer.list_all)
+    @trainer = Trainer.find_by(name: trainer)
   end 
 
   def make_new_file
-      puts "Please enter a name for your trainer"
-      name = $stdin.gets.chomp
-      @trainer = Trainer.create(name: name)
-      @trainer.pick_first_pokemon
+    puts "Please enter a name for your trainer"
+    name = $stdin.gets.chomp
+    @trainer = Trainer.create(name: name)
+    @trainer.pick_first_pokemon
   end
 
   def get_valid_input(valid_list)
     loop do 
-    input = $stdin.gets.chomp
+      input = $stdin.gets.chomp
       if valid_list.include?(input)
         return input
       else
