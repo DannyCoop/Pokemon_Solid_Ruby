@@ -81,7 +81,7 @@ class Cli
     while (@poke.hp > 0 && @opponent_poke.hp > 0)
       # system "clear
       puts "#{@poke.nickname} currently has #{@poke.hp} hp.\n#{@opponent_poke.nickname} currently has #{@opponent_poke.hp} hp."
-      if first == @trainer
+      if first.trainer == @trainer
         move = first.pick_move
         move2 = second.pick_random_move
       else
