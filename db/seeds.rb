@@ -151,7 +151,7 @@ Mewtwo
 Mew".split("\n")
 
 all_the_pokemon.each do |pokemon|
-    Pokemon.create(name: pokemon, base_hp: (125..135).to_a.sample)
+    Pokemon.create(name: pokemon, base_hp: (300..355).to_a.sample)
 end
 
 
@@ -184,9 +184,39 @@ matine = Trainer.create(name: "Matine")
 tien_phan = Trainer.create(name: "Tien Phan")
 zara = Trainer.create(name: "Zara")
 
-water_gun = Move.create(name: "Water Gun", damage: 30)
-tackle = Move.create(name: "Tackle", damage: 25)
-ember = Move.create(name: "Ember", damage: 35)
+water_gun = Move.create(name: "Water Gun", damage: 40)
+tackle = Move.create(name: "Tackle", damage: 40)
+ember = Move.create(name: "Ember", damage: 40)
+pound = Move.create(name: "Pound", damage: 40)
+karate_chop = Move.create(name: "karate Chop", damage: 50)
+double_slap = Move.create(name: "Double Slap", damage: 30)
+flamethrower = Move.create(name: "Flamethrower", damage: 90)
+thunderbolt = Move.create(name: "Thunderbolt", damage:90)
+mega_punch = Move.create(name: "Mega Punch", damage: 80)
+pay_day = Move.create(name: "Pay Day", damage: 40)
+fire_punch = Move.create(name: "Fire Punch", damage: 75)
+scratch = Move.create(name: "Scratch", damage: 40)
+cut = Move.create(name: "Cut", damage: 50)
+fly = Move.create(name: "Fly", damage: 90)
+wing_attack = Move.create(name: "Wing Attack", damage: 25)
+ice_beam = Move.create(name: "Ice Beam", damage: 90)
+surf = Move.create(name: "Surf", damage: 90)
+razor_leaf = Move.create(name: "Razor Leaf", damage: 55)
+confusion = Move.create(name: "Confusion", damage: 50)
+psychic = Move.create(name: "Psychic", damage: 90)
+earthquake = Move.create(name: "Earthquake", damage: 100)
+rage = Move.create(name: "Rage", damage: 20)
+fire_blast = Move.create(name: "Fire Blast", damage: 110)
+waterfall = Move.create(name: "Waterfall", damage: 80)
+bubble = Move.create(name: "Bubble", damage: 40)
+crabhammer = Move.create(name: "Crabhammer", damage: 100)
+rock_slide = Move.create(name: "Rock Slide", damage: 75)
+hyper_fang = Move.create(name: "Hyper Fang", damage: 80)
+tri_attack = Move.create(name: "Tri Attack", damage: 80)
+slash = Move.create(name: "Slash", damage: 70)
+
+
+
 words = "ability able about above accept according account across act action activity actually add address administration admit adult affect after again against age agency agent ago agree agreement ahead air all allow almost".split(" ")
 
 Trainer.all.each do |t|

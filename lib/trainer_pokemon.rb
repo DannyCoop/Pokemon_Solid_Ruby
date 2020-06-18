@@ -55,6 +55,7 @@ class TrainerPokemon < ActiveRecord::Base
   def calculate_health(move)
     damage = move.damage
     self.hp -= damage
-    puts "#{self.nickname} took #{damage} points of damage. Now at #{hp < 0 ? 0 : hp} hp."
+    system "clear"
+    puts "*******************************************************\n  #{self.nickname} took #{damage} points of damage. Now at #{hp < 0 ? 0 : hp} hp.\n*******************************************************\n"
   end
 end
