@@ -38,8 +38,9 @@ class Trainer < ActiveRecord::Base
     puts "Would you like to give your pokemon a nickname? y/n"
     yn = get_valid_input(['y','n'])
     if yn == 'y'
+      puts "Enter the nick name here"
       nickname = gets.chomp
-      picked_mon.nickname = nickname
+      picked_mon.update(nickname: nickname)
     end
     picked_mon.pick_moves
     picked_mon
@@ -97,6 +98,8 @@ class Trainer < ActiveRecord::Base
   end
 
   def pick_opponent
+    system "clear"
+    puts "Who will you challenge?"
     show_opponents_with_pokemon
     opponent_name = get_valid_input(opponent_names)
     Trainer.find_by(name: opponent_name)

@@ -39,8 +39,8 @@ class TrainerPokemon < ActiveRecord::Base
   end
 
   def pick_move
-    puts list_pokemon_moves
     puts "Choose a move from the list"
+    puts list_pokemon_moves
     move = get_valid_input(list_pokemon_moves)
     puts "#{self.nickname} used #{move}!"
     Move.find_by(name: move)

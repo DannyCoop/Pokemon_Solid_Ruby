@@ -9,15 +9,22 @@ class Cli
   end
 
   def start_menu
-    puts "start battle\nview roster"
-    valid_inputs = ['start battle', 'view roster']
+    system "clear"
+    puts "start battle\nview roster\nexit game"
+    valid_inputs = ['start battle', 'view roster', 'exit game']
     input = get_valid_input(valid_inputs)
     case input 
     when valid_inputs[0]
+      system "clear"
       battle_prep
     when valid_inputs[1]
+      system "clear"
+      puts "This is your roster what would you like to do?"
       @trainer.show_pokemon_with_moves
       roster_menu
+    when valid_inputs[2]
+      system "clear"
+      abort("Thanks for playing!!")
     end
   end
 
@@ -63,7 +70,8 @@ class Cli
     @trainer.list_opponents
     @opponent = @trainer.pick_opponent
     @opponent_poke = @opponent.pick_random_pokemon
-    puts "Your opponent is #{@opponent.name}!. #{@opponent.name} sent out #{@opponent_poke.nickname}!"
+    # system "clear"
+    puts "Your opponent is #{@opponent.name}!. #{@opponent.name} sent out #{@opponent_poke.nickname} the #{@opponent_poke.pokemon.name}!"
     battle
   end
 
@@ -71,14 +79,20 @@ class Cli
     order = turn_order
     first, second = order[0], order[1]
     while (@poke.hp > 0 && @opponent_poke.hp > 0)
+      # system "clear
       puts "#{@poke.nickname} currently has #{@poke.hp} hp.\n#{@opponent_poke.nickname} currently has #{@opponent_poke.hp} hp."
-      move = first.pick_move
+      if first == @trainer
+        move = first.pick_move
+        move2 = second.pick_random_move
+      else
+        move = first.pick_random_move
+        move2 = second.pick_move
+      end
       second.calculate_health(move)
       if second.hp <= 0
         winner = first
         break
       end
-      move2 = second.pick_random_move
       first.calculate_health(move2)
       if first.hp <= 0
         winner = second
@@ -116,6 +130,7 @@ class Cli
 
   def returning_player
     list = ["y", "n"]
+    system "clear"
     puts "Do you have a save file? y/N"
     return get_valid_input(list) == "y"
   end
