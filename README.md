@@ -2,18 +2,18 @@
 Pokémon Solid Ruby is a Ruby CLI application that allowed players to partake in simulated Pokemon battles, supported both single and multiplayer battles as well as maintained data persistence. Besides battling the player is able to create a trainer each trainer has a roster that can be edited. A roster contains pokemon and each pokemon can have their name changed and their moveset changed.
 
 # Getting started
-* First you'll want to fork and clone the the repo.
-* Second you'll need to run 'bundle install'
-* Third you'll need to run rails db:migrate to create the database 
-* Fourth rails db:seed to populate your new database with some seed data.
+* Fork and clone the the repo.
+* Run 'bundle install'
+* Rrun rails db:migrate to create the database 
+* Run rails db:seed to populate your new database with some seed data.
 Once you have taken all of the following steps you will have a ready to go copy of digital meetup on your local machine.
 
 
 # Prerequisites
 * Ruby version 2.6.1
-* bundler
+* Bundler
 
-# installing
+# Installing
 ```
 # To install Ruby run this line below
 rvm install 2.6.1
