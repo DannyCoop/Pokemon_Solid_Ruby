@@ -1,39 +1,44 @@
-INTRO
-  Me (Daniel) and Ian made a pokemon battle game for our mod one project. 
+# Pokémon Solid Ruby
+Pokémon Solid Ruby is a Ruby CLI application that allowed players to partake in simulated Pokemon battles, supported both single and multiplayer battles as well as maintained data persistence. Besides battling the player is able to create a trainer each trainer has a roster that can be edited. A roster contains pokemon and each pokemon can have their name changed and their moveset changed.
+
+# Getting started
+* First you'll want to fork and clone the the repo.
+* Second you'll need to run 'bundle install'
+* Third you'll need to run rails db:migrate to create the database 
+* Fourth rails db:seed to populate your new database with some seed data.
+Once you have taken all of the following steps you will have a ready to go copy of digital meetup on your local machine.
 
 
-INSTALL INSTRUCTIONS
-  -First you will clone the repo.
-  -cd in to that dir
-  -Once here run rake db:migrate 
-  -Then rake db:seed
-  -To test if you have doen everything right run "ruby bin/run.rb" if you see "Do you have a save file y/N".
-  -Then you are set
+# Prerequisites
+* Ruby version 2.6.1
+* bundler
 
-  
-FEATURES
-  Here is a list of features that we included in our game.
-    -Create a trainer with a name.
-    -Choose a pokemon 
-      -You can nick name the pokemon
-      -pick the pokemons moves
-    -Saves any past trainer and their pokemon
-      -keeps track of the trainer and their pokemon in a data base.
-      -keeps track of the pokemons moves & nickname.
-      -also keeps track of the changes made to the trainers roster
-        -pokemon
-        -moves
-        -nick name
-    -Battle
-      -The user can pick the pokemon they want to battle with from their roster.
-      -The user can pick any of the past trainers to battle or any of the base seeded trainers.
-      -Once in battle the use can select any of ther moves 
-      -The enemy trainer will also attack back.
-      -Once one of the pokemon's hp has reached 0 the game will declare a winner.
-    -View roster
-      -Add or chage their pokemon's moves
-      -Change their pokemon's nick name
-      -Release a pokemon from your roster
-    -Add a new pokemon to your roster
+# installing
+```
+# To install Ruby run this line below
+rvm install 2.6.1
+# To use that version of ruby run this line below
+rvm use 2.6.1
+# To make sure it worked run this line below if you get =* ruby-2.6.1 you should be good to go
+run rvm list 
+```
+```
+# To install bundler run the line below
+gem install bundler
+```
+
+# Deployment
+```
+# To run the application run the line below in your terminal 
+ruby bin/run.rb
+```
+
+# Built With
+* Ruby - Served as the base language
+* Active Record - MVC pattern 
+
+
+# Authors
+* [Daniel Cooper](https://github.com/DannyCoop)
 
 
