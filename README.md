@@ -6,7 +6,7 @@ Pokémon Solid Ruby is a Ruby CLI application that allows players to partake in 
 * Run 'bundle install'
 * Run 'rake db:migrate' to create the database 
 * Run 'rake db:seed' to populate your new database with some seed data.
-Once you have taken all of the following steps you will have a ready-to-go copy of a digital meetup on your local machine.
+Once you have taken all of the steps above, you will have a ready-to-go copy of a digital meetup on your local machine.
 
 
 # Prerequisites
